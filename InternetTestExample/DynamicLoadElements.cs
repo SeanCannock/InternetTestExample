@@ -10,37 +10,52 @@ namespace InternetTestExample
     public class DynamicLoadElements
     {
 
-		IWebDriver driver = new ChromeDriver();
+		public WebDriverWait Wait { get; private set; }
+		protected IWebDriver driver;
+
+		[SetUp]
+		public void Initialise()
+		{
+			ChromeOptions options = new ChromeOptions();
+			driver = new ChromeDriver();
+		}
 
 		[Test]
 		public void LoadWaitTest()
 
-		//Scenario: User 
-		//When User logs in
-		//Given the login details are correct
-		//Then User is logged in
+		// Scenario: Page loads element after event
+		  // When User clicks start
+		  // Given the element has loaded
+		  // Then the message 'Hello World!' should display
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dynamic_loading/2");
 			driver.FindElement(By.XPath("//button[contains(text(),'Start')]")).Click();
-			Thread.Sleep(8000);
-			driver.FindElement(By.XPath("//h4[contains(text(),'Hello World!')]"));
+			WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+			wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@id='loading'][@style='display: none;']")));
+			Assert.IsTrue(driver.FindElement(By.XPath("//h4[contains(text(),'Hello World!')]")).Displayed);
 		}
 
 		[Test]
 		public void LoadWaitTest2()
 
-		//Scenario: User 
-		//When User logs in
-		//Given the login details are correct
-		//Then User is logged in
+		// Scenario: Page loads element that is hidden
+		  // When User clicks start
+		  // Given the element is no longer hidden
+		  // Then the message 'Hello World!' should display
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dynamic_loading/1");
 			driver.FindElement(By.XPath("//button[contains(text(),'Start')]")).Click();
-			Thread.Sleep(8000);
-			driver.FindElement(By.XPath("//div[@id='loading'][@style='display: none;']"));
-			driver.FindElement(By.XPath("//h4[contains(text(),'Hello World!')]"));
+			WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+			wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@id='loading'][@style='display: none;']")));
+			Assert.IsTrue(driver.FindElement(By.XPath("//h4[contains(text(),'Hello World!')]")).Displayed);
+        }
+
+		[TearDown]
+		public void Teardown()
+		{
+			driver.Close();
 		}
 
 	}

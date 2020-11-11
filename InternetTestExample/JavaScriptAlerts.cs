@@ -9,35 +9,51 @@ namespace InternetTestExample
 {
 	public class JavaScriptAlerts
 	{
+		public WebDriverWait Wait { get; private set; }
+		protected IWebDriver driver;
 
-		IWebDriver driver = new ChromeDriver();
+		[SetUp]
+		public void Initialise()
+		{
+			ChromeOptions options = new ChromeOptions();
+			driver = new ChromeDriver();
+		}
 
-		[Test]
+		[Test, Order(1)]
 		public void JSConfirm()
 
-		//Scenario: User 
-		//When User logs in
-		//Given the login details are correct
-		//Then User is logged in
+		// Scenario: User accepts JavaScript Confirm message
+		// When User clicks for confirm
+		// And Ok is selected
+		// Then result reads Ok
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
 			driver.FindElement(By.XPath("//button[contains(text(),'Click for JS Confirm')]")).Click();
 			driver.SwitchTo().Alert().Accept();
+			Assert.IsTrue(driver.FindElement(By.XPath("//*[text()='You clicked: Ok']")).Displayed);
 		}
 
-		[Test]
+		[Test, Order(2)]
 		public void JSCancel()
 
-		//Scenario: User 
-		//When User logs in
-		//Given the login details are correct
-		//Then User is logged in
+		// Scenario: User accepts JavaScript Confirm message
+		// When User clicks for confirm
+		// And Cancel is selected
+		// Then result reads Cancel
 
 		{
+
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
 			driver.FindElement(By.XPath("//button[contains(text(),'Click for JS Confirm')]")).Click();
 			driver.SwitchTo().Alert().Dismiss();
+			Assert.IsTrue(driver.FindElement(By.XPath("//*[text()='You clicked: Cancel']")).Displayed);
+		}
+
+		[TearDown]
+		public void Teardown()
+		{
+			driver.Close();
 		}
 
 	}
