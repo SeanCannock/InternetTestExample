@@ -32,10 +32,6 @@ I could have also implemented working Gherkin code using Specflow, so that tests
 case itself, though I think such implementation is only practical on a larger codebase, it is hard for me to understand
 why some of these cases may even require gherkin, though respect that a system may expect it. 
 
-Last but not least, there are cases that I have not covered, though I felt it more important to prove that I could
-make my code function in the potentially high quality coding standards expected for a large financial system. The
-other Javascript alerts I didn't cover would have been repeating code that's already proven to function here. I 
-felt it most important here that I get the particular methods I use correct, and that no time is wasted in the
-execution. Though I use a lot of XPath to find my elements, this has been more to do with a lack of tags on the
+Though I use a lot of XPath to find my elements, this has been more to do with a lack of tags on the
 website being tested itself. 
 
