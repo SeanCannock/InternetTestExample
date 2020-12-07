@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Threading;
 
 namespace InternetTestExample
 {
@@ -23,9 +22,6 @@ namespace InternetTestExample
 		public void LoginPagePass()
 
 			// Scenario: User logs in
-			  // When User logs in
-			  // Given the login details are correct
-			  // Then User is logged in
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/login");
@@ -40,10 +36,7 @@ namespace InternetTestExample
 		[Test]
 		public void LoginPageUsernameFail()
 
-			// Scenario: User logs in
-			  // When User logs in
-			  // Given the username is incorrect
-			  // Then User is not logged in
+			// Scenario: User logs in with incorrect Username
 
         {
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/login");
@@ -58,10 +51,7 @@ namespace InternetTestExample
 		[Test]
 		public void LoginPagePassFail()
 
-		// Scenario: User logs in
-		  // When User logs in
-		  // Given the password is incorrect
-		  // Then User is not logged in
+		// Scenario: User logs in with incorrect Password
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/login");

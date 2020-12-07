@@ -2,8 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Threading;
 
 namespace InternetTestExample
 {
@@ -23,9 +21,7 @@ namespace InternetTestExample
 		public void JSConfirm()
 
 		// Scenario: User accepts JavaScript Confirm message
-		// When User clicks for confirm
-		// And Ok is selected
-		// Then result reads Ok
+
 
 		{
 			driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
@@ -37,10 +33,7 @@ namespace InternetTestExample
 		[Test, Order(2)]
 		public void JSCancel()
 
-		// Scenario: User accepts JavaScript Confirm message
-		// When User clicks for confirm
-		// And Cancel is selected
-		// Then result reads Cancel
+		// Scenario: User cancels JavaScript Confirm message
 
 		{
 
